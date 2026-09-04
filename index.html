@@ -168,7 +168,7 @@ code{font-family:var(--mono);background:var(--card-a);color:var(--brand-d);
    비밀번호는 원문이 아니라 여러 번 해시한 값으로만 들어 있고,
    사이트 주소는 비밀번호로 암호화되어 있어 그대로는 읽히지 않습니다.
    ──────────────────────────────────────────────────────────────── */
-var CONFIG = {"v":1,"ready":true,"salt":"23309ab5c656935b3841dd9fec4e5026","s":{"chk":"6f080c5fbd57b78365aa92aec17f142b80860198e0e4b939689218979df7762c","url":"O8cMa2v34K8zKUSYe7PDOqQ="},"a":{"chk":"e5b169ae3cfc43f6b54684c080e96c08d50d7f53cf4dcf59e4c9a7d1efa8e653","url":"ZmA/0kPstp/pVaurVS7+sm8="}}; /*CONFIG_END*/
+var CONFIG = {"v":1,"ready":true,"salt":"a741438e63a84ac9ff97b4f9811bc12c","s":{"chk":"6c821e23e335b3c51b03cc6d492be429557ef64c4d2257c8712a6fc48cd29d21","url":"LVX7q0bmEd02kxkOpEEZQsA="},"a":{"chk":"35bd69cd7a22fa690ad6700fb96509f168e3a089473b04e521c208b8d0ac47a8","url":"siHc/kbzJMTpp65PoYX/0jc="}}; /*CONFIG_END*/
 
 var ROUNDS = 60000;                       /* 비밀번호를 늘여 만드는 반복 횟수 */
 var SRC = document.documentElement.outerHTML;   /* 저장할 때 쓸 원본 */
@@ -392,6 +392,6 @@ document.getElementById('set-save').onclick = function(){
 
 /* 설정이 안 된 상태면 첫 화면에서 바로 알려 준다 */
 if (!CONFIG.ready){
-  document.getElementById('btn-go').textContent = '강의자료 사이트로 이동';
+  document.getElementById('btn-go').textContent = '강의자료 사이트로 이동 (설정 필요)';
 }
 </script></body></html>
