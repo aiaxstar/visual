@@ -1,198 +1,525 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>빅데이터가시화 — 강의 목차</title>
+<title>빅데이터가시화</title>
 <style>
 :root{
   --navy:#24306B; --brand:#3C56C8; --brand-d:#2A3E9E; --yellow:#FFD43B;
-  --ink:#151b2e; --mut:#5b6478; --line:#e2e6f0; --bg:#f6f7fb;
+  --ink:#151b2e; --mut:#5b6478; --line:#e2e6f0; --bg:#eef0f7;
   --card-a:#EEF1FB; --card-b:#F7F8FD;
+  --err:#c0392b; --errbg:#FCEAE7; --ok:#2f8a52; --okbg:#E7F5EC;
+  --warn:#FFF6D9; --warn-e:#b8860b;
   --sans:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;
   --mono:"D2Coding","Consolas","Menlo",ui-monospace,monospace;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
-  font-size:15px;line-height:1.7}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.7;
+  display:flex;align-items:center;justify-content:center;padding:28px}
+.wrap{width:100%;max-width:490px}
+.card{background:#fff;border-radius:18px;box-shadow:0 14px 44px rgba(24,32,72,.13);
+  overflow:hidden}
+.head{background:var(--navy);color:#fff;padding:34px 32px 30px;text-align:center}
+.head .eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--yellow);
+  font-weight:700;margin:0 0 9px}
+.head h1{margin:0;font-size:29px;font-weight:800;letter-spacing:-.01em}
+.body{padding:28px 32px 26px}
 
-/* ── 머리말 ── */
-header.hero{background:var(--navy);color:#fff;padding:46px 28px 40px}
-.hero .in{max-width:1120px;margin:0 auto}
-.hero .eyebrow{font-size:12.5px;letter-spacing:.14em;color:var(--yellow);
-  font-weight:700;margin:0 0 10px}
-.hero h1{margin:0;font-size:38px;font-weight:800;letter-spacing:-.01em}
-.hero p{margin:12px 0 0;font-size:15px;color:#c9d0ee;max-width:640px}
-.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.hero .meta span{background:rgba(255,255,255,.13);border-radius:99px;
-  padding:5px 13px;font-size:12.5px}
+.big{display:block;width:100%;border:0;border-radius:11px;background:var(--brand);
+  color:#fff;font-family:inherit;font-size:16px;font-weight:700;padding:15px 18px;
+  cursor:pointer;transition:.16s}
+.big:hover{background:var(--brand-d)}
+.ghost{border:1.5px solid var(--line);background:#fff;color:var(--mut);
+  border-radius:11px;font-family:inherit;font-size:14px;font-weight:700;
+  padding:13px 16px;cursor:pointer;white-space:nowrap}
+.ghost:hover{border-color:#c3cbdd;color:var(--ink)}
+.small{border:0;border-radius:8px;background:var(--brand);color:#fff;
+  font-family:inherit;font-size:13px;font-weight:700;padding:9px 15px;cursor:pointer}
+.small:hover{background:var(--brand-d)}
+.small.gh{background:#dfe4f2;color:#3a4258}
+.small.gh:hover{background:#cfd6ea}
+.row{display:flex;gap:8px}
+.row .big{flex:1}
 
-/* ── 본문 ── */
-main{max-width:1120px;margin:0 auto;padding:34px 28px 90px}
-.secline{display:flex;align-items:baseline;gap:12px;margin:0 0 18px}
-.secline h2{margin:0;font-size:20px}
-.secline em{font-style:normal;font-size:13px;color:var(--mut)}
+label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:0 0 6px}
+input[type=password],input[type=text]{width:100%;border:1.5px solid var(--line);
+  border-radius:9px;padding:11px 13px;font-family:inherit;font-size:14.5px;
+  outline:0;background:#fdfdff;color:var(--ink)}
+input:focus{border-color:var(--brand);background:#fff}
+.field{margin:0 0 13px}
+.hint{font-size:11.5px;color:#8a90a3;margin:5px 0 0}
+.hint.warn{color:var(--err);font-weight:700}
+.hint.fine{color:var(--ok);font-weight:700}
 
-.grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
-@media (max-width:940px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:620px){.grid{grid-template-columns:1fr}}
+.msg{border-radius:9px;padding:11px 14px;font-size:13.5px;margin:0 0 14px}
+.msg.bad{background:var(--errbg);color:var(--err)}
+.msg.good{background:var(--okbg);color:var(--ok)}
+.msg.info{background:var(--card-a);color:var(--brand-d)}
 
-.ch{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
-  border-radius:14px;padding:20px 20px 16px;text-decoration:none;color:inherit;
-  transition:.16s;position:relative;min-height:186px}
-.ch .no{display:inline-flex;align-items:center;justify-content:center;
-  width:38px;height:38px;border-radius:10px;background:var(--card-a);
-  color:var(--brand-d);font-weight:800;font-size:15px;font-family:var(--mono)}
-.ch h3{margin:14px 0 6px;font-size:17.5px;font-weight:700;line-height:1.4}
-.ch p{margin:0;font-size:13.5px;color:var(--mut);line-height:1.65}
-.ch .go{margin-top:auto;padding-top:14px;font-size:13px;font-weight:700;
-  color:var(--mut);display:flex;align-items:center;gap:6px}
+h2.t{margin:0 0 4px;font-size:18px}
+p.d{margin:0 0 18px;font-size:13.5px;color:var(--mut)}
+.hidden{display:none !important}
 
-/* 링크가 채워진 카드 */
-.ch.on{cursor:pointer}
-.ch.on:hover{border-color:var(--brand);box-shadow:0 8px 22px rgba(36,48,107,.13);
-  transform:translateY(-2px)}
-.ch.on .no{background:var(--brand);color:#fff}
-.ch.on .go{color:var(--brand)}
-.ch.on:hover .go .arw{transform:translateX(3px)}
-.go .arw{transition:.16s}
+/* ── 관리자 화면 ── */
+.now{background:var(--card-a);border-radius:11px;padding:14px 16px;margin:0 0 16px}
+.now .l{display:flex;gap:10px;font-size:13px;padding:3px 0}
+.now .l b{flex:none;width:96px;color:var(--brand-d);font-weight:700}
+.now .l span{min-width:0;word-break:break-all;font-family:var(--mono);font-size:12.4px}
+.now .l span.mask{font-family:var(--sans);color:var(--mut)}
 
-/* 링크가 비어 있는 카드 */
-.ch.off{cursor:default;background:var(--card-b);border-style:dashed}
-.ch.off h3{color:#4a5270}
-.ch.off .go{color:#96a0b8}
-.ch.off .go::before{content:"";width:7px;height:7px;border-radius:50%;
-  background:var(--yellow);display:inline-block}
+.item{border:1px solid var(--line);border-radius:11px;margin:0 0 10px;overflow:hidden}
+.item>button.op{width:100%;display:flex;align-items:center;gap:10px;background:#fff;
+  border:0;cursor:pointer;font-family:inherit;font-size:14.5px;font-weight:700;
+  color:var(--ink);padding:14px 16px;text-align:left}
+.item>button.op:hover{background:#fafbff}
+.item>button.op .ar{margin-left:auto;color:#9aa2b8;font-size:12px;transition:.16s}
+.item.open>button.op{background:#f4f6fd;border-bottom:1px solid var(--line)}
+.item.open>button.op .ar{transform:rotate(90deg)}
+.item .in{display:none;padding:16px 16px 14px}
+.item.open .in{display:block}
+.item .in .row{margin-top:4px}
 
-/* ── 안내 ── */
-.howto{margin-top:34px;background:#fff;border:1px solid var(--line);
-  border-left:4px solid var(--brand);border-radius:12px;padding:20px 22px}
-.howto h3{margin:0 0 8px;font-size:15px;color:var(--brand-d)}
-.howto p{margin:0 0 10px;font-size:13.5px;color:var(--mut)}
-.howto pre{margin:0;background:#f8f9fe;border:1px solid var(--line);border-radius:9px;
-  padding:13px 15px;font-family:var(--mono);font-size:12.6px;line-height:1.65;
-  color:#2b3348;overflow-x:auto}
-.howto code{font-family:var(--mono);background:var(--card-a);color:var(--brand-d);
-  padding:1px 5px;border-radius:4px;font-size:.92em}
+.saveline{background:var(--warn);border-left:4px solid var(--warn-e);border-radius:9px;
+  padding:12px 15px;font-size:13px;color:#6b5200;margin:16px 0 12px}
+.saveline b{display:block;margin-bottom:3px}
+textarea.out{width:100%;border:1.5px solid var(--line);border-radius:9px;
+  padding:12px 13px;font-family:var(--mono);font-size:12.3px;line-height:1.6;
+  background:#f8f9fe;color:#2b3348;resize:vertical;min-height:120px;outline:0}
+label.showpw{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--mut);
+  font-weight:700;margin:2px 0 12px;cursor:pointer;user-select:none}
+label.showpw input{width:15px;height:15px;accent-color:var(--brand);cursor:pointer}
 
-footer{max-width:1120px;margin:0 auto;padding:0 28px 50px;
-  font-size:12.5px;color:#8a90a3}
-
-@media print{
-  body{background:#fff}
-  header.hero{background:#fff;color:var(--navy);padding:0 0 20px;
-    border-bottom:3px solid var(--navy)}
-  .hero p{color:var(--mut)}.hero .eyebrow{color:var(--brand)}
-  .hero .meta span{background:var(--card-a);color:var(--ink)}
-  main{padding:20px 0}.ch{break-inside:avoid}.howto{display:none}
-}
+.foot{padding:0 32px 24px;display:flex;align-items:center;gap:10px}
+.foot .link{font-size:12px;color:#9aa2b8;cursor:pointer;text-decoration:none}
+.foot .link:hover{color:var(--brand)}
+.foot .sp{flex:1}
 </style></head><body>
 
-<header class="hero"><div class="in">
-  <p class="eyebrow">BIG DATA VISUALIZATION</p>
-  <h1>빅데이터가시화</h1>
-  <p>파이썬으로 데이터를 읽고, 다듬고, 그림으로 바꾸는 과정입니다.
-     아래에서 학습할 장을 선택하세요.</p>
-  <div class="meta">
-    <span>전 6장</span>
-    <span>파이썬 · 판다스 · matplotlib · seaborn</span>
-  </div>
-</div></header>
+<div class="wrap"><div class="card">
 
-<main>
-  <div class="secline"><h2>강의 목차</h2><em>장을 누르면 해당 자료가 열립니다</em></div>
-
-  <div class="grid" id="grid">
-    <a class="ch" data-ch="1">
-      <span class="no">01</span>
-      <h3>파이썬 실습환경 구축</h3>
-      <p>파이썬과 주피터 노트북을 설치하고, 실습에 쓸 패키지와 폴더 구조를 준비합니다.</p>
-      <span class="go"><span class="txt"></span><span class="arw"></span></span>
-    </a>
-
-    <a class="ch" data-ch="2">
-      <span class="no">02</span>
-      <h3>판다스 패키지</h3>
-      <p>Series와 DataFrame을 만들고 loc · iloc · 조건 검색 · apply · merge · groupby로 데이터를 다룹니다.</p>
-      <span class="go"><span class="txt"></span><span class="arw"></span></span>
-    </a>
-
-    <a class="ch" data-ch="3">
-      <span class="no">03</span>
-      <h3>데이터 시각화</h3>
-      <p>matplotlib으로 꺾은선 · 막대 · 파이 · 산점도 · 히스토그램 · 상자 수염 그래프를 그립니다.</p>
-      <span class="go"><span class="txt"></span><span class="arw"></span></span>
-    </a>
-
-    <a class="ch" data-ch="4">
-      <span class="no">04</span>
-      <h3>한국복지패널 데이터</h3>
-      <p>실제 조사 자료를 전처리하고 seaborn으로 성별 · 연령 · 소득의 관계를 살펴봅니다.</p>
-      <span class="go"><span class="txt"></span><span class="arw"></span></span>
-    </a>
-
-    <a class="ch" data-ch="5">
-      <span class="no">05</span>
-      <h3>자동차 데이터 셋</h3>
-      <p>mpg 데이터로 분포 · 밀도 · 결합 그래프와 그룹 비교 그래프를 익히고 스타일을 다룹니다.</p>
-      <span class="go"><span class="txt"></span><span class="arw"></span></span>
-    </a>
-
-    <a class="ch" data-ch="6">
-      <span class="no">06</span>
-      <h3>특별한 그래프</h3>
-      <p>경사 그래프 · 리본 박스 · Lollipop · Tree Map · Stem Plot 등 표현력 있는 그래프를 그립니다.</p>
-      <span class="go"><span class="txt"></span><span class="arw"></span></span>
-    </a>
+  <div class="head">
+    <p class="eyebrow">BIG DATA VISUALIZATION</p>
+    <h1>빅데이터가시화</h1>
   </div>
 
-  <div class="howto">
-    <h3>링크 넣는 방법</h3>
-    <p>이 파일을 메모장이나 편집기로 열어 아래쪽 <code>LINKS</code> 부분에 각 장의 주소를 넣으세요.
-       비어 있는 장은 점선 카드로 표시되고 눌러도 이동하지 않습니다.
-       같은 폴더에 파일을 두었다면 파일 이름만 적어도 됩니다.</p>
-    <pre>var LINKS = {
-  1: "",                                    &lt;- 아직 비어 있음
-  2: "ch02_판다스_패키지_핸즈온랩.html",        &lt;- 같은 폴더의 파일
-  3: "https://example.com/ch03.html"        &lt;- 인터넷 주소
-};</pre>
+  <!-- 첫 화면 -->
+  <div class="body" id="v-home">
+    <button class="big" id="btn-go">강의자료 사이트로 이동</button>
+    <div id="home-msg" style="margin-top:14px"></div>
   </div>
-</main>
 
-<footer>빅데이터가시화 · 강의 목차</footer>
+  <!-- 학생 비밀번호 입력 -->
+  <div class="body hidden" id="v-ask">
+    <h2 class="t">비밀번호 입력</h2>
+    <p class="d">강의자료 사이트에 들어가려면 비밀번호가 필요합니다.</p>
+    <div id="ask-msg"></div>
+    <div class="field">
+      <label for="ask-pw">비밀번호</label>
+      <input type="password" id="ask-pw" autocomplete="off">
+    </div>
+    <div class="row">
+      <button class="big" id="ask-ok">확인</button>
+      <button class="ghost" data-home="">취소</button>
+    </div>
+  </div>
+
+  <!-- 관리자 로그인 -->
+  <div class="body hidden" id="v-login">
+    <h2 class="t">관리자 모드</h2>
+    <p class="d">관리자 비밀번호를 입력하세요.</p>
+    <div id="log-msg"></div>
+    <div class="field">
+      <label for="log-pw">관리자 비밀번호</label>
+      <input type="password" id="log-pw" autocomplete="off">
+    </div>
+    <div class="row">
+      <button class="big" id="log-ok">확인</button>
+      <button class="ghost" data-home="">취소</button>
+    </div>
+  </div>
+
+  <!-- 관리자 화면 -->
+  <div class="body hidden" id="v-admin">
+    <h2 class="t">관리자 모드</h2>
+    <p class="d">바꿀 항목을 눌러 펼친 뒤 변경하세요.</p>
+    <div id="adm-msg"></div>
+
+    <div class="now">
+      <div class="l"><b>사이트 주소</b><span id="now-url"></span></div>
+      <div class="l"><b>학생 비밀번호</b><span id="now-pw"></span></div>
+      <div class="l"><b>관리자 비밀번호</b><span id="now-adm"></span></div>
+    </div>
+    <label class="showpw"><input type="checkbox" id="now-show"> 비밀번호 보이기</label>
+
+    <!-- 학생 비밀번호 변경 -->
+    <div class="item" id="it-pw">
+      <button class="op" data-open="it-pw">학생용 비밀번호 변경<span class="ar">▶</span></button>
+      <div class="in">
+        <div id="pw-msg"></div>
+        <div class="field">
+          <label for="pw-new">새 비밀번호</label>
+          <input type="password" id="pw-new" class="pwbox" autocomplete="new-password">
+          <p class="hint">4자 이상. 비워 두면 비밀번호 없이 누구나 들어갑니다.</p>
+        </div>
+        <div class="field">
+          <label for="pw-new2">새 비밀번호 확인</label>
+          <input type="password" id="pw-new2" class="pwbox" autocomplete="new-password">
+          <p class="hint" id="pw-match">&nbsp;</p>
+        </div>
+        <label class="showpw"><input type="checkbox" class="peek"> 입력한 값 보이기</label>
+        <div class="row">
+          <button class="small" id="pw-apply">학생 비밀번호 변경</button>
+          <button class="small gh" data-close="">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 관리자 비밀번호 변경 -->
+    <div class="item" id="it-adm">
+      <button class="op" data-open="it-adm">관리자 비밀번호 변경<span class="ar">▶</span></button>
+      <div class="in">
+        <div id="am-msg"></div>
+        <div class="field">
+          <label for="am-new">새 관리자 비밀번호</label>
+          <input type="password" id="am-new" class="pwbox" autocomplete="new-password">
+          <p class="hint">4자 이상.</p>
+        </div>
+        <div class="field">
+          <label for="am-new2">새 관리자 비밀번호 확인</label>
+          <input type="password" id="am-new2" class="pwbox" autocomplete="new-password">
+          <p class="hint" id="am-match">&nbsp;</p>
+        </div>
+        <label class="showpw"><input type="checkbox" class="peek"> 입력한 값 보이기</label>
+        <div class="row">
+          <button class="small" id="am-apply">관리자 비밀번호 변경</button>
+          <button class="small gh" data-close="">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사이트 주소 변경 -->
+    <div class="item" id="it-url">
+      <button class="op" data-open="it-url">강의자료 사이트 주소 변경<span class="ar">▶</span></button>
+      <div class="in">
+        <div id="ur-msg"></div>
+        <div class="field">
+          <label for="ur-new">사이트 주소</label>
+          <input type="text" id="ur-new" placeholder="https://..." autocomplete="off">
+          <p class="hint">같은 폴더의 파일이면 파일 이름만 적어도 됩니다.</p>
+        </div>
+        <div class="row">
+          <button class="small" id="ur-apply">주소 변경</button>
+          <button class="small gh" data-close="">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 저장 -->
+    <div id="save-box" class="hidden">
+      <div class="saveline"><b>아직 파일에 저장되지 않았습니다</b>
+        지금 바꾼 내용은 이 화면에서만 살아 있습니다.
+        아래 상자를 복사해 HTML 파일의 같은 자리에 덮어쓰거나,
+        [파일 내려받기]로 받은 파일로 지금 파일을 바꿔 주세요.</div>
+      <textarea class="out" id="save-code" readonly="" spellcheck="false"></textarea>
+      <div class="row" style="margin-top:10px">
+        <button class="big" id="save-copy">설정 복사</button>
+        <button class="ghost" id="save-dl">파일 내려받기</button>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:14px">
+      <button class="ghost" style="flex:1" data-home="">첫 화면으로</button>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="sp"></span>
+    <a class="link" id="to-admin">관리자</a>
+  </div>
+
+</div></div>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   각 장의 링크를 여기에 넣으세요.
-   같은 폴더의 파일이면 파일 이름만, 웹에 올렸다면 전체 주소를 적습니다.
-   비워 두면 "준비 중" 카드로 표시됩니다.
-   ══════════════════════════════════════════════════════════════ */
-var LINKS = {
-  1: "",   // 1장 파이썬 실습환경 구축
-  2: "",   // 2장 판다스 패키지
-  3: "",   // 3장 데이터시각화
-  4: "",   // 4장 한국복지패널 데이터
-  5: "",   // 5장 자동차 데이터 셋
-  6: ""    // 6장 특별한 그래프
+/* ╔══════════════════════════════════════════════════════════════════╗
+   ║  여기만 고치면 됩니다.                                            ║
+   ║  메모장이나 편집기로 이 파일을 열어 따옴표 사이만 바꾸세요.        ║
+   ║  (관리자 모드에서 바꾼 뒤 만들어지는 내용도 이 모양입니다)         ║
+   ╚══════════════════════════════════════════════════════════════════╝ */
+
+var SETTINGS = {
+
+  /* 강의자료 사이트 주소.
+     같은 폴더의 파일이면 "빅데이터가시화_강의목차.html" 처럼 파일 이름만 써도 됩니다. */
+  url: "https://aiaxstar.github.io/aiaxstar/visual/pages/intro.html",
+
+  /* 학생에게 알려 줄 비밀번호. 비워 두면 비밀번호 없이 바로 이동합니다. */
+  password: "GR_QhrA@W>74",
+
+  /* 관리자 비밀번호. 오른쪽 아래 [관리자] 를 눌렀을 때 필요합니다. */
+  admin: "qnfrnf",
+
+  /* 새 탭에서 열려면 true, 같은 탭에서 열려면 false */
+  newTab: true
+
 };
 
-/* 새 탭에서 열려면 true, 같은 탭에서 열려면 false */
-var OPEN_IN_NEW_TAB = true;
-/* ════════════════════════════════════════════════════════════ */
+/* ╚═══════════════ 여기까지. 아래는 손대지 않아도 됩니다 ═════════════╝ */
 
-document.querySelectorAll('.ch').forEach(function (card) {
-  var url = (LINKS[card.dataset.ch] || '').trim();
-  var txt = card.querySelector('.go .txt');
-  var arw = card.querySelector('.go .arw');
-  if (url) {
-    card.href = url;
-    if (OPEN_IN_NEW_TAB) { card.target = '_blank'; card.rel = 'noopener'; }
-    card.className = 'ch on';
-    txt.textContent = '열기';
-    arw.textContent = '→';
-  } else {
-    card.className = 'ch off';
-    txt.textContent = '준비 중';
-    arw.textContent = '';
-  }
+
+var SRC = document.documentElement.outerHTML;   /* 파일 저장에 쓸 원본 */
+var DIRTY = false;                              /* 아직 파일에 저장하지 않은 변경 */
+
+/* ── 화면 전환 ── */
+var VIEWS = ['v-home', 'v-ask', 'v-login', 'v-admin'];
+function show(id){
+  VIEWS.forEach(function(v){
+    document.getElementById(v).classList.toggle('hidden', v !== id);
+  });
+  var f = document.querySelector('#' + id + ' input:not([type=checkbox])');
+  if (f) setTimeout(function(){ f.focus() }, 30);
+}
+function say(where, kind, txt){
+  document.getElementById(where).innerHTML =
+    txt ? '<div class="msg ' + kind + '">' + txt + '</div>' : '';
+}
+document.querySelectorAll('[data-home]').forEach(function(b){
+  b.onclick = function(){
+    if (DIRTY && !confirm('아직 파일에 저장하지 않은 변경이 있습니다.\n첫 화면으로 나갈까요?')) return;
+    document.getElementById('ask-pw').value = '';
+    document.getElementById('log-pw').value = '';
+    say('ask-msg','',''); say('log-msg','','');
+    show('v-home');
+  };
 });
-</script>
-</body></html>
+
+function goSite(){
+  if (SETTINGS.newTab) window.open(SETTINGS.url, '_blank', 'noopener');
+  else location.href = SETTINGS.url;
+}
+
+/* ── 학생: 사이트로 이동 ── */
+document.getElementById('btn-go').onclick = function(){
+  if (!SETTINGS.url){ openAdmin(true); return }
+  if (!SETTINGS.password){ goSite(); return }
+  say('ask-msg','',''); show('v-ask');
+};
+function tryEnter(){
+  var pw = document.getElementById('ask-pw').value;
+  if (!pw){ say('ask-msg','bad','비밀번호를 입력하세요.'); return }
+  if (pw !== SETTINGS.password){
+    say('ask-msg','bad','비밀번호가 맞지 않습니다.');
+    document.getElementById('ask-pw').select(); return;
+  }
+  say('ask-msg','good','확인되었습니다. 이동합니다…');
+  setTimeout(goSite, 350);
+}
+document.getElementById('ask-ok').onclick = tryEnter;
+document.getElementById('ask-pw').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') tryEnter();
+});
+
+/* ── 관리자 로그인 ── */
+document.getElementById('to-admin').onclick = function(){
+  if (!SETTINGS.admin){ openAdmin(!SETTINGS.url); return }
+  say('log-msg','',''); show('v-login');
+};
+function tryLogin(){
+  var pw = document.getElementById('log-pw').value;
+  if (pw !== SETTINGS.admin){
+    say('log-msg','bad','관리자 비밀번호가 맞지 않습니다.');
+    document.getElementById('log-pw').select(); return;
+  }
+  document.getElementById('log-pw').value = '';
+  openAdmin(false);
+}
+document.getElementById('log-ok').onclick = tryLogin;
+document.getElementById('log-pw').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') tryLogin();
+});
+
+/* ── 관리자 화면 ── */
+function openAdmin(first){
+  paintNow();
+  document.getElementById('ur-new').value = SETTINGS.url;
+  ['pw-new','pw-new2','am-new','am-new2'].forEach(function(i){
+    document.getElementById(i).value = '';
+  });
+  matchAll();
+  say('adm-msg', 'info', first
+    ? '아직 설정이 비어 있습니다. 아래에서 주소와 비밀번호를 정해 주세요.'
+    : '');
+  if (first){
+    openItem('it-url');
+  } else {
+    document.querySelectorAll('.item').forEach(function(x){ x.classList.remove('open') });
+  }
+  show('v-admin');
+}
+function hide(v){ return v ? '●'.repeat(Math.min(v.length, 12)) : '' }
+function paintNow(){
+  var on = document.getElementById('now-show').checked;
+  document.getElementById('now-url').textContent = SETTINGS.url || '(비어 있음)';
+  var pw = document.getElementById('now-pw'), am = document.getElementById('now-adm');
+  if (!SETTINGS.password){ pw.textContent = '(없음 — 누구나 들어갑니다)'; pw.className = 'mask' }
+  else { pw.textContent = on ? SETTINGS.password : hide(SETTINGS.password); pw.className = '' }
+  if (!SETTINGS.admin){ am.textContent = '(없음)'; am.className = 'mask' }
+  else { am.textContent = on ? SETTINGS.admin : hide(SETTINGS.admin); am.className = '' }
+}
+document.getElementById('now-show').addEventListener('change', paintNow);
+
+function openItem(id){
+  document.querySelectorAll('.item').forEach(function(x){
+    x.classList.toggle('open', x.id === id);
+  });
+  var f = document.querySelector('#' + id + ' input:not([type=checkbox])');
+  if (f) setTimeout(function(){ f.focus() }, 30);
+}
+document.querySelectorAll('.op').forEach(function(b){
+  b.onclick = function(){
+    var box = document.getElementById(b.dataset.open);
+    if (box.classList.contains('open')) box.classList.remove('open');
+    else openItem(b.dataset.open);
+  };
+});
+document.querySelectorAll('[data-close]').forEach(function(b){
+  b.onclick = function(){ b.closest('.item').classList.remove('open') };
+});
+
+/* 입력한 값 보이기 */
+document.querySelectorAll('.peek').forEach(function(c){
+  c.addEventListener('change', function(){
+    c.closest('.in').querySelectorAll('.pwbox').forEach(function(i){
+      i.type = c.checked ? 'text' : 'password';
+    });
+  });
+});
+/* 확인 칸 일치 표시 */
+function mark(a, b, box){
+  var v1 = document.getElementById(a).value, v2 = document.getElementById(b).value;
+  var el = document.getElementById(box);
+  if (!v1 && !v2){ el.className = 'hint'; el.innerHTML = '&nbsp;'; return }
+  if (v1 === v2){ el.className = 'hint fine'; el.textContent = '두 칸이 같습니다.' }
+  else { el.className = 'hint warn'; el.textContent = '두 칸이 서로 다릅니다.' }
+}
+function matchAll(){ mark('pw-new','pw-new2','pw-match'); mark('am-new','am-new2','am-match') }
+['pw-new','pw-new2','am-new','am-new2'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', matchAll);
+});
+
+/* ── 학생 비밀번호 변경 ── */
+document.getElementById('pw-apply').onclick = function(){
+  var a = document.getElementById('pw-new').value.trim();
+  var b = document.getElementById('pw-new2').value.trim();
+  if (a !== b){
+    say('pw-msg','bad','두 칸이 서로 다릅니다. 다시 확인해 주세요.');
+    document.getElementById('pw-new2').focus(); return;
+  }
+  if (a && a.length < 4){
+    say('pw-msg','bad','4자 이상으로 정해 주세요.');
+    document.getElementById('pw-new').focus(); return;
+  }
+  if (a && a === SETTINGS.admin){
+    say('pw-msg','bad','관리자 비밀번호와 같게 정할 수 없습니다.'); return;
+  }
+  if (!a && !confirm('비밀번호를 없애면 누구나 바로 들어갑니다. 계속할까요?')) return;
+  if (a === SETTINGS.password){ say('pw-msg','info','지금 비밀번호와 같습니다.'); return }
+
+  SETTINGS.password = a;
+  document.getElementById('pw-new').value = '';
+  document.getElementById('pw-new2').value = '';
+  matchAll(); paintNow(); touch();
+  say('pw-msg','good', a
+    ? '학생 비밀번호를 바꿨습니다. 아래에서 파일에 저장해 주세요.'
+    : '학생 비밀번호를 없앴습니다. 아래에서 파일에 저장해 주세요.');
+};
+
+/* ── 관리자 비밀번호 변경 ── */
+document.getElementById('am-apply').onclick = function(){
+  var a = document.getElementById('am-new').value.trim();
+  var b = document.getElementById('am-new2').value.trim();
+  if (a !== b){
+    say('am-msg','bad','두 칸이 서로 다릅니다. 다시 확인해 주세요.');
+    document.getElementById('am-new2').focus(); return;
+  }
+  if (!a){ say('am-msg','bad','관리자 비밀번호는 비워 둘 수 없습니다.'); return }
+  if (a.length < 4){ say('am-msg','bad','4자 이상으로 정해 주세요.'); return }
+  if (a === SETTINGS.password){
+    say('am-msg','bad','학생 비밀번호와 같게 정할 수 없습니다.'); return;
+  }
+  if (a === SETTINGS.admin){ say('am-msg','info','지금 비밀번호와 같습니다.'); return }
+
+  SETTINGS.admin = a;
+  document.getElementById('am-new').value = '';
+  document.getElementById('am-new2').value = '';
+  matchAll(); paintNow(); touch();
+  say('am-msg','good','관리자 비밀번호를 바꿨습니다. 아래에서 파일에 저장해 주세요.');
+};
+
+/* ── 주소 변경 ── */
+document.getElementById('ur-apply').onclick = function(){
+  var u = document.getElementById('ur-new').value.trim();
+  if (!u){ say('ur-msg','bad','주소를 입력하세요.'); return }
+  if (u === SETTINGS.url){ say('ur-msg','info','지금 주소와 같습니다.'); return }
+  SETTINGS.url = u;
+  paintNow(); touch();
+  say('ur-msg','good','주소를 바꿨습니다. 아래에서 파일에 저장해 주세요.');
+  document.getElementById('btn-go').textContent = '강의자료 사이트로 이동';
+  say('home-msg','','');
+};
+
+/* ── 저장 ── */
+function q(s){ return JSON.stringify(String(s)) }
+function blockText(){
+  return 'var SETTINGS = {\n\n' +
+    '  /* 강의자료 사이트 주소.\n' +
+    '     같은 폴더의 파일이면 "빅데이터가시화_강의목차.html" 처럼 파일 이름만 써도 됩니다. */\n' +
+    '  url: ' + q(SETTINGS.url) + ',\n\n' +
+    '  /* 학생에게 알려 줄 비밀번호. 비워 두면 비밀번호 없이 바로 이동합니다. */\n' +
+    '  password: ' + q(SETTINGS.password) + ',\n\n' +
+    '  /* 관리자 비밀번호. 오른쪽 아래 [관리자] 를 눌렀을 때 필요합니다. */\n' +
+    '  admin: ' + q(SETTINGS.admin) + ',\n\n' +
+    '  /* 새 탭에서 열려면 true, 같은 탭에서 열려면 false */\n' +
+    '  newTab: ' + (SETTINGS.newTab ? 'true' : 'false') + '\n\n' +
+    '};';
+}
+function touch(){
+  DIRTY = true;
+  document.getElementById('save-code').value = blockText();
+  document.getElementById('save-box').classList.remove('hidden');
+}
+document.getElementById('save-copy').onclick = function(){
+  var t = document.getElementById('save-code');
+  t.select();
+  var b = document.getElementById('save-copy');
+  function done(){ b.textContent = '복사됨'; setTimeout(function(){ b.textContent = '설정 복사' }, 1400) }
+  if (navigator.clipboard) navigator.clipboard.writeText(t.value).then(done,
+      function(){ document.execCommand('copy'); done() });
+  else { document.execCommand('copy'); done() }
+};
+document.getElementById('save-dl').onclick = function(){
+  var out = SRC.replace(/var SETTINGS = \{[\s\S]*?\n\};/, blockText());
+  if (out === SRC){
+    say('adm-msg','bad','설정 자리를 찾지 못했습니다. 위 상자를 복사해 직접 넣어 주세요.');
+    return;
+  }
+  var blob = new Blob(['<!doctype html>\n' + out], { type: 'text/html;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '빅데이터가시화.html';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(function(){ URL.revokeObjectURL(a.href) }, 2000);
+  DIRTY = false;
+  say('adm-msg','good','새 파일을 내려받았습니다. 이 파일로 지금 파일을 바꿔 주세요.');
+};
+
+/* 페이지를 벗어날 때 저장 안 한 변경이 있으면 알려 준다 */
+window.addEventListener('beforeunload', function(e){
+  if (DIRTY){ e.preventDefault(); e.returnValue = '' }
+});
+
+/* 주소가 비어 있으면 첫 화면에서 알려 준다 */
+if (!SETTINGS.url){
+  document.getElementById('btn-go').textContent = '강의자료 사이트로 이동 (주소 미설정)';
+  say('home-msg','info','아직 주소가 비어 있습니다. 버튼을 누르면 설정 화면이 열립니다.');
+}
+</script></body></html>
