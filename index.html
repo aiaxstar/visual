@@ -90,7 +90,7 @@ code{font-family:var(--mono);background:var(--card-a);color:var(--brand-d);
     </div>
     <div class="row">
       <button class="big" id="ask-ok">확인</button>
-      <button class="ghost" data-back>취소</button>
+      <button class="ghost" data-back="">취소</button>
     </div>
   </div>
 
@@ -105,7 +105,7 @@ code{font-family:var(--mono);background:var(--card-a);color:var(--brand-d);
     </div>
     <div class="row">
       <button class="big" id="adm-ok">확인</button>
-      <button class="ghost" data-back>취소</button>
+      <button class="ghost" data-back="">취소</button>
     </div>
   </div>
 
@@ -151,7 +151,7 @@ code{font-family:var(--mono);background:var(--card-a);color:var(--brand-d);
 
     <div class="row">
       <button class="big" id="set-save">설정 저장 (파일 내려받기)</button>
-      <button class="ghost" data-back>취소</button>
+      <button class="ghost" data-back="">취소</button>
     </div>
   </div>
 
@@ -168,7 +168,7 @@ code{font-family:var(--mono);background:var(--card-a);color:var(--brand-d);
    비밀번호는 원문이 아니라 여러 번 해시한 값으로만 들어 있고,
    사이트 주소는 비밀번호로 암호화되어 있어 그대로는 읽히지 않습니다.
    ──────────────────────────────────────────────────────────────── */
-var CONFIG = {"v":1,"ready":false,"salt":"","s":{"chk":"","url":""},"a":{"chk":"","url":""}}; /*CONFIG_END*/
+var CONFIG = {"v":1,"ready":true,"salt":"a098c3ad758e87c7aa77f465a4b42502","s":{"chk":"55a9c4d775e69d8e57354d82b44ec0413876422498620250ea6c2a218a8f550b","url":"YckqQOOKmRv6vIDnF4dcs/G/IbVneBVERkkqnXD5cgW1hcRiXyXSAphrkcXM"},"a":{"chk":"d336a6b5b62335f8a861a9fec14dbcff28994b93e1de453f33ce20b38ffc5069","url":"i4vcgU00QyXdL+C0lfG9ti2L7PScrUu1FThhqDlIpJxGrME5Xe7pPmq5MvB4"}}; /*CONFIG_END*/
 
 var ROUNDS = 60000;                       /* 비밀번호를 늘여 만드는 반복 횟수 */
 var SRC = document.documentElement.outerHTML;   /* 저장할 때 쓸 원본 */
@@ -392,8 +392,6 @@ document.getElementById('set-save').onclick = function(){
 
 /* 설정이 안 된 상태면 첫 화면에서 바로 알려 준다 */
 if (!CONFIG.ready){
-  document.getElementById('btn-go').textContent = '강의자료 사이트로 이동 (설정 필요)';
+  document.getElementById('btn-go').textContent = '강의자료 사이트로 이동';
 }
-</script>
-</body></html>
-
+</script></body></html>
